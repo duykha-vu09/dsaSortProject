@@ -2,6 +2,7 @@
 #include <fstream>
 #include <cmath>
 #include <time.h>
+#include "sort.h"
 using namespace std;
 
 template <class T>

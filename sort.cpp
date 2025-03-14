@@ -291,3 +291,103 @@ void flashSort(int arr[], int n,int& countCmp) {
     }
 }
 
+void shellSort(int a[], int n, int& countCmp) {
+    countCmp = 0;
+    for (int gap = n / 2; countCmp++, gap > 0; gap /= 2) {
+        for (int i = gap; countCmp++, i < n; i++) {
+            int temp = a[i];
+            int j;
+            for (j = i; countCmp++, j >= gap && countCmp++, a[j - gap] > temp; j -= gap) {
+                a[j] = a[j - gap];
+            }
+            a[j] = temp;
+        }
+    }
+}
+
+void shakerSort(int a[], int n, int& countCmp) {
+    countCmp = 0;
+    bool swapped = true;
+    int start = 0;
+    int end = n - 1;
+    while (swapped) {
+        swapped = false;
+        for (int i = start; countCmp++, i < end; i++) {
+            if (countCmp++, a[i] > a[i + 1]) {
+                swap(a[i], a[i + 1]);
+                swapped = true;
+            }
+        }
+        if (countCmp++, !swapped) {
+            break;
+        }
+        swapped = false;
+        end--;
+        for (int i = end - 1; countCmp++, i >= start; i--) {
+            if (countCmp++, a[i] > a[i + 1]) {
+                swap(a[i], a[i + 1]);
+                swapped = true;
+            }
+        }
+        start++;
+    }
+}
+
+void heapRebuild(int i, int a[], int n, int& countCmp) {
+    int largest = i;
+    int left = 2 * i + 1;
+    int right = 2 * i + 2;
+
+    if (countCmp++, left < n && countCmp++, a[left] > a[largest]) {
+        largest = left;
+    }
+
+    if (countCmp++, right < n && countCmp++, a[right] > a[largest]) {
+        largest = right;
+    }
+
+    if (countCmp++, largest != i) {
+        swap(a[i], a[largest]);
+        heapRebuild(largest, a, n, countCmp);
+    }
+}
+
+void heapConstruct(int a[], int n, int& countCmp) {
+    for (int i = n / 2 - 1; countCmp++, i >= 0; i--) {
+        heapRebuild(i, a, n, countCmp);
+    }
+}
+
+void heapSort(int a[], int n, int& countCmp) {
+    countCmp = 0;
+    heapConstruct(a, n, countCmp);
+    int r = n - 1;
+    while (countCmp++, r > 0) {
+        swap(a[0], a[r]);
+        heapRebuild(0, a, r, countCmp);
+        r--;
+    }
+}
+
+void radixSort(int a[], int n, int& countCmp) {
+    countCmp = 0;
+    int minn = minArray(a, n, countCmp);
+
+    int* shiftedArr = new int[n];
+    for (int i = 0; countCmp++, i < n; i++) {
+        shiftedArr[i] = a[i] - minn;
+    }
+
+    int maxx = a[maxArray(shiftedArr, n, countCmp)];
+    for (int exp = 1; countCmp++, maxx / exp > 0; exp *= 10) {
+        countingSort(shiftedArr, n, countCmp);
+    }
+
+    for (int i = 0; countCmp++, i < n; i++) {
+        a[i] = shiftedArr[i] + minn;
+    }
+
+    delete[] shiftedArr;
+}
+
+
