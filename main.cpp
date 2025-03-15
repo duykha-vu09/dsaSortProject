@@ -176,7 +176,7 @@ int main(int argc, char* argv[])
 
                 //Result
                 if (parameter == "-time" || parameter == "-both") {
-                    cout << "Running time : " << runTime << "\n";
+                    cout << "Running time : " << runTime << "ms\n";
                 }
                 if (parameter == "-comp" || parameter == "-both") {
                     cout << "Comparisons : " << countCmp << "\n";
