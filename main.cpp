@@ -32,14 +32,14 @@ bool isLetter(const char* str) {
 }
 
 //Copy New Array
-void copyArray(int a[],int b[], int n) {
+void copyArray(int a[], int b[], int n) {
 
     for (int i = 0; i < n; i++) {
         b[i] = a[i];
     }
 }
 
-void readArrayfromFile(const string& fileName,int& n,int*& arr) {
+void readArrayfromFile(const string& fileName, int& n, int*& arr) {
     ifstream fin(fileName);
     if (!fin.is_open()) {
         cout << "Can't open file\n";
@@ -54,24 +54,108 @@ void readArrayfromFile(const string& fileName,int& n,int*& arr) {
     fin.close();
 }
 
-int main(int argc,char* argv[])
+int main(int argc, char* argv[])
 {
     long long countCmp = 0;
 
     double runTime = 0;
 
     string mode = argv[1];
-    
+
     if (mode == "-a") {
         string algorithm = argv[2];
         cout << "ALGORITHM MODE\n";
         cout << "Algorithm: " << algorithm << "\n";
-        if (argc <4) {
+        if (argc < 4) {
             cout << "Invalid Command";
             return 1;
         }
         if (argc == 5) {
-            if (isLetter(argv[3])) {                        //Command 1
+            if (isNumber(argv[3])) {                   //Command 3
+
+                string size = argv[3];
+                string parameter = argv[4];
+
+                cout << "Input size: " << size << "\n\n";
+
+                int n = stoi(size);
+                int* A1 = new int[n];
+                int* A2 = new int[n];
+
+                //Randomize
+                cout << "Input order: Randomize\n";
+
+
+                GenerateData(A1, n, 0);
+                copyArray(A1, A2, n);
+
+                runTime = measureSortingTime(algorithm, A2, n, countCmp);
+
+                //Result
+                if (parameter == "-time" || parameter == "-both") {
+                    cout << "Running time : " << runTime << "ms\n";
+                }
+                if (parameter == "-comp" || parameter == "-both") {
+                    cout << "Comparisons : " << countCmp << "\n";
+                }
+                cout << "--------------------------------------\n";
+
+                //Nearly Sorted
+                cout << "Input order: Nearly Sorted\n";
+
+
+                // GenerateData(A1, n, 3);
+                copyArray(A1, A2, n);
+
+                runTime = measureSortingTime(algorithm, A2, n, countCmp);
+
+                //Result
+                if (parameter == "-time" || parameter == "-both") {
+                    cout << "Running time : " << runTime << "ms\n";
+                }
+                if (parameter == "-comp" || parameter == "-both") {
+                    cout << "Comparisons : " << countCmp << "\n";
+                }
+                cout << "--------------------------------------\n";
+
+                //Sorted
+                cout << "Input order: Sorted\n";
+
+                // GenerateData(A1, n, 1);
+                copyArray(A1, A2, n);
+
+                runTime = measureSortingTime(algorithm, A2, n, countCmp);
+
+                //Result
+                if (parameter == "-time" || parameter == "-both") {
+                    cout << "Running time : " << runTime << "ms\n";
+                }
+                if (parameter == "-comp" || parameter == "-both") {
+                    cout << "Comparisons : " << countCmp << "\n";
+                }
+                cout << "--------------------------------------\n";
+
+                //Reversed
+                cout << "Input order: Reversed\n";
+
+
+                // GenerateData(A1, n, 2);
+                copyArray(A1, A2, n);
+
+                runTime = measureSortingTime(algorithm, A2, n, countCmp);
+
+                //Result
+                if (parameter == "-time" || parameter == "-both") {
+                    cout << "Running time : " << runTime << "ms\n";
+                }
+                if (parameter == "-comp" || parameter == "-both") {
+                    cout << "Comparisons : " << countCmp << "\n";
+                }
+                cout << "--------------------------------------\n";
+                delete[]A1;
+                delete[]A2;
+            }
+            else {                        //Command 1
                 int n;
                 int* A1 = nullptr;
 
@@ -98,92 +182,6 @@ int main(int argc,char* argv[])
                     cout << "Comparisons : " << countCmp << "\n";
                 }
             }
-            else if (isNumber(argv[3])) {                   //Command 3
-
-                string size = argv[3];
-                string parameter = argv[4];
-
-                cout << "Input size: " << size << "\n\n";
-
-                int n = stoi(size);
-                int* A1 = new int[n];
-                int* A2 = new int[n];
-
-                //Randomize
-                cout << "Input order: Randomize\n";
-                
-
-                GenerateData(A1, n, 0);
-                copyArray(A1, A2, n);
-
-                runTime = measureSortingTime(algorithm, A2, n, countCmp);
-
-                //Result
-                if (parameter == "-time" || parameter == "-both") {
-                    cout << "Running time : " << runTime << "ms\n";
-                }
-                if (parameter == "-comp" || parameter == "-both") {
-                    cout << "Comparisons : " << countCmp << "\n";
-                }
-                cout << "--------------------------------------\n";
-
-                //Nearly Sorted
-                cout << "Input order: Nearly Sorted\n";
-                
-
-                // GenerateData(A1, n, 3);
-                copyArray(A1, A2, n);
-
-                runTime = measureSortingTime(algorithm, A2, n, countCmp);
-
-                //Result
-                if (parameter == "-time" || parameter == "-both") {
-                    cout << "Running time : " << runTime << "ms\n";
-                }
-                if (parameter == "-comp" || parameter == "-both") {
-                    cout << "Comparisons : " << countCmp << "\n";
-                }
-                cout << "--------------------------------------\n";
-                
-                //Sorted
-                cout << "Input order: Sorted\n";
-                
-                // GenerateData(A1, n, 1);
-                copyArray(A1, A2, n);
-
-                runTime = measureSortingTime(algorithm, A2, n, countCmp);
-
-                //Result
-                if (parameter == "-time" || parameter == "-both") {
-                    cout << "Running time : " << runTime << "ms\n";
-                }
-                if (parameter == "-comp" || parameter == "-both") {
-                    cout << "Comparisons : " << countCmp << "\n";
-                }
-                cout << "--------------------------------------\n";
-
-                //Reversed
-                cout << "Input order: Reversed\n";
-                
-
-                // GenerateData(A1, n, 2);
-                copyArray(A1, A2, n);
-
-                runTime = measureSortingTime(algorithm, A2, n, countCmp);
-
-                //Result
-                if (parameter == "-time" || parameter == "-both") {
-                    cout << "Running time : " << runTime << "ms\n";
-                }
-                if (parameter == "-comp" || parameter == "-both") {
-                    cout << "Comparisons : " << countCmp << "\n";
-                }
-                cout << "--------------------------------------\n";
-                delete[]A1;
-                delete[]A2;
-            }
-            
-
         }
         if (argc == 6) {            //Command 2
             string size = argv[3];
@@ -317,8 +315,8 @@ int main(int argc,char* argv[])
 
             //Result
             cout << "Running time : " << runTime1 << "ms" << " | " << runTime2 << "ms\n";
-            cout << "Comparisons : " << countCmp1 <<" | "<<countCmp2<<"\n";
-            
+            cout << "Comparisons : " << countCmp1 << " | " << countCmp2 << "\n";
+
             delete[]A1;
             delete[]A2;
             delete[]A3;
