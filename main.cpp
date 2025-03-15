@@ -9,14 +9,6 @@
 using namespace std;
 using namespace std::chrono;
 
-void printList (int arr[], int n)
-{
-    for (int i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
-    }
-}
-
 bool isNumber(const char* str) {
     if (!str || *str == '\0') return false;  // Handle null or empty string
     while (*str) {
