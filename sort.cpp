@@ -205,23 +205,25 @@ void insertionSort(int arr[], int n, long long& countCmp) {
 }
 
 int partition(int arr[], int low, int high, long long& countCmp) {
-    int pivot = arr[high];                  //Last Element
+    int mid = low + (high - low) / 2;
+    int pivot = arr[mid];                  // Middle Element
+    swap(arr[mid], arr[high]);             // Move pivot to end for partitioning
     int i = low - 1;
     for (int j = low; countCmp++, j < high; j++) {
-        if (countCmp++,arr[j] <= pivot) {              //if the number with idx j smaller than pivot 
-            i++;                            //it will be swap with the number that larger than pivot (idx i)
+        if (countCmp++, arr[j] <= pivot) {              // if the number with idx j is smaller than pivot 
+            i++;                            // it will be swapped with the number that is larger than pivot (idx i)
             swap(arr[i], arr[j]);
         }
     }
     swap(arr[i + 1], arr[high]);
-    return i + 1;                           //Return the pivot index to get 2 array on 2 side of the pivot
+    return i + 1;                           // Return the pivot index to get 2 arrays on 2 sides of the pivot
 }
 
-void quickSort(int arr[], int low, int high,long long& countCmp) {
+void quickSort(int arr[], int low, int high, long long& countCmp) {
     if (countCmp++, low < high) {
-        int pivotIndex = partition(arr, low, high, countCmp);    //get the pivot index
-        quickSort(arr, low, pivotIndex - 1, countCmp);            //Partition the Array on the left of the Pivot
-        quickSort(arr, pivotIndex + 1, high, countCmp);           //Partition the Array on the right of the Pivot
+        int pivotIndex = partition(arr, low, high, countCmp);    // get the pivot index
+        quickSort(arr, low, pivotIndex - 1, countCmp);            // Partition the Array on the left of the Pivot
+        quickSort(arr, pivotIndex + 1, high, countCmp);           // Partition the Array on the right of the Pivot
     }
     return;
 }
