@@ -7,7 +7,7 @@
 
 using namespace std;
 
-double measureSortingTime(string algorithm, int arr[], int n, int& countCmp) {
+double measureSortingTime(string algorithm, int arr[], int n, long long& countCmp) {
     if (algorithm == "selection-sort") {
         auto start = chrono::high_resolution_clock::now();
         selectionSort(arr, n, countCmp);
@@ -85,7 +85,7 @@ double measureSortingTime(string algorithm, int arr[], int n, int& countCmp) {
     return -1;
 }
 
-void writeResults(string algorithm, string order, int size, double time, int countCmp) {
+void writeResults(string algorithm, string order, int size, double time, long long countCmp) {
     ofstream file("results.txt", ios::app);
     file << algorithm << " " << order << " " << size << " " << time << " ms " << countCmp << " comparisons\n";
     file.close();
@@ -104,7 +104,7 @@ void runExperiments() {
             for (const string& algo : algorithms) {
                 int* A2 = new int[size];
                 A2 = A1;
-                int countCmp = 0;
+                long long countCmp = 0;
                 double time = 0.0;
 
                 if (algo == "selection-sort")
