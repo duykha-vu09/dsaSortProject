@@ -54,6 +54,20 @@ void readArrayfromFile(const string& fileName, int& n, int*& arr) {
     fin.close();
 }
 
+void writeToFile(const string& fileName, int arr[], int n){
+    ofstream outFile(fileName);
+    if (!outFile) {
+        cout << "Error: Could not open " << fileName << " for writing." << endl;
+        return;
+    }
+    outFile << n << "\n";
+    for (int i = 0; i < n; ++i) {
+        outFile << arr[i]<<" ";
+    }
+    outFile << "\n";
+    outFile.close();
+}
+
 int main(int argc, char* argv[])
 {
     long long countCmp = 0;
@@ -87,6 +101,7 @@ int main(int argc, char* argv[])
 
 
                 GenerateData(A1, n, 0);
+                writeToFile("input_1.txt", A1, n);
                 copyArray(A1, A2, n);
 
                 runTime = measureSortingTime(algorithm, A2, n, countCmp);
@@ -104,7 +119,8 @@ int main(int argc, char* argv[])
                 cout << "Input order: Nearly Sorted\n";
 
 
-                // GenerateData(A1, n, 3);
+                GenerateData(A1, n, 3);
+                writeToFile("input_2.txt", A1, n);
                 copyArray(A1, A2, n);
 
                 runTime = measureSortingTime(algorithm, A2, n, countCmp);
@@ -121,7 +137,8 @@ int main(int argc, char* argv[])
                 //Sorted
                 cout << "Input order: Sorted\n";
 
-                // GenerateData(A1, n, 1);
+                GenerateData(A1, n, 1);
+                writeToFile("input_3.txt", A1, n);
                 copyArray(A1, A2, n);
 
                 runTime = measureSortingTime(algorithm, A2, n, countCmp);
@@ -139,7 +156,8 @@ int main(int argc, char* argv[])
                 cout << "Input order: Reversed\n";
 
 
-                // GenerateData(A1, n, 2);
+                GenerateData(A1, n, 2);
+                writeToFile("input_4.txt", A1, n);
                 copyArray(A1, A2, n);
 
                 runTime = measureSortingTime(algorithm, A2, n, countCmp);
@@ -173,6 +191,8 @@ int main(int argc, char* argv[])
                 cout << "--------------------------------------\n";
 
                 runTime = measureSortingTime(algorithm, A2, n, countCmp);
+
+                writeToFile("output.txt", A2, n);
 
                 //Result
                 if (parameter == "-time" || parameter == "-both") {
@@ -210,8 +230,12 @@ int main(int argc, char* argv[])
                 copyArray(A1, A2, n);
             }
 
+            writeToFile("input.txt", A1, n);
+
             runTime = measureSortingTime(algorithm, A2, n, countCmp);
 
+            writeToFile("output.txt", A2, n);
+            
             //Result
             if (parameter == "-time" || parameter == "-both") {
                 cout << "Running time : " << runTime << "ms\n";
@@ -306,6 +330,8 @@ int main(int argc, char* argv[])
                 copyArray(A1, A2, n);
                 copyArray(A1, A3, n);
             }
+
+            writeToFile("input.txt", A1, n);
 
             //Lan 1
             runTime1 = measureSortingTime(algorithm1, A2, n, countCmp1);
