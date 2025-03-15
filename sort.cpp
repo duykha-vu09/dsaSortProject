@@ -10,7 +10,7 @@ void swap(int &a, int &b)
     b = tmp;
 }
 
-void selectionSort(int arr[], int n, int& countCmp)
+void selectionSort(int arr[], int n, long long& countCmp)
 {
     for (int i = 0; i < n; i++)
     {
@@ -33,7 +33,7 @@ void selectionSort(int arr[], int n, int& countCmp)
     countCmp++;
 }
 
-void bubbleSort(int arr[], int n, int& countCmp)
+void bubbleSort(int arr[], int n, long long& countCmp)
 {
     for (int i = 0; i < n - 1; i++)
     {
@@ -58,7 +58,7 @@ void bubbleSort(int arr[], int n, int& countCmp)
     countCmp++;
 }
 
-void merge (int arr[], int left, int mid, int right, int& countCmp)
+void merge (int arr[], int left, int mid, int right, long long& countCmp)
 {
     int n = mid - left + 1;
     int m = right - mid;
@@ -108,7 +108,7 @@ void merge (int arr[], int left, int mid, int right, int& countCmp)
     delete[] tmp;
 }
 
-void mergeSort (int arr[], int left, int right, int& countCmp)
+void mergeSort (int arr[], int left, int right, long long& countCmp)
 {
     if (left >= right) return;
     countCmp++;
@@ -119,7 +119,7 @@ void mergeSort (int arr[], int left, int right, int& countCmp)
     merge(arr, left, mid, right, countCmp);
 }
 
-int binarySearch(int a[], int item, int left, int right, int& countCmp)
+int binarySearch(int a[], int item, int left, int right, long long& countCmp)
 {
     if (right <= left) 
     {
@@ -145,7 +145,7 @@ int binarySearch(int a[], int item, int left, int right, int& countCmp)
     return binarySearch(a, item, left, mid - 1, countCmp);
 }
 
-void binaryInsertionSort(int a[], int n, int& countCmp)
+void binaryInsertionSort(int a[], int n, long long& countCmp)
 {
     int i, pos, j, key;
 
@@ -171,7 +171,7 @@ void binaryInsertionSort(int a[], int n, int& countCmp)
     countCmp++;
 }
 
-int maxArray(int arr[], int n, int& countCmp) {            //Find Max Element in Array
+int maxArray(int arr[], int n, long long& countCmp) {            //Find Max Element in Array
     int Max = 0;
     for (int i = 0; countCmp++, i < n; i++) {
         if (countCmp++,arr[i] > arr[Max]) {
@@ -181,7 +181,7 @@ int maxArray(int arr[], int n, int& countCmp) {            //Find Max Element in
     return Max;
 }
 
-int minArray(int arr[], int n, int& countCmp) {            //Find Min Element in Array
+int minArray(int arr[], int n, long long& countCmp) {            //Find Min Element in Array
     int Min = arr[0];
     for (int i = 0; countCmp++, i < n; i++) {
         if (countCmp++,arr[i] < Min) {
@@ -192,7 +192,7 @@ int minArray(int arr[], int n, int& countCmp) {            //Find Min Element in
 }
 
 
-void insertionSort(int arr[], int n, int& countCmp) {
+void insertionSort(int arr[], int n, long long& countCmp) {
     for (int i = 1; countCmp++, i < n; i++) {
         int j = 0;                          //Pick the second number
         while (countCmp++,j < i) {
@@ -204,7 +204,7 @@ void insertionSort(int arr[], int n, int& countCmp) {
     }
 }
 
-int partition(int arr[], int low, int high, int& countCmp) {
+int partition(int arr[], int low, int high, long long& countCmp) {
     int pivot = arr[high];                  //Last Element
     int i = low - 1;
     for (int j = low; countCmp++, j < high; j++) {
@@ -217,7 +217,7 @@ int partition(int arr[], int low, int high, int& countCmp) {
     return i + 1;                           //Return the pivot index to get 2 array on 2 side of the pivot
 }
 
-void quickSort(int arr[], int low, int high,int& countCmp) {
+void quickSort(int arr[], int low, int high,long long& countCmp) {
     if (countCmp++, low < high) {
         int pivotIndex = partition(arr, low, high, countCmp);    //get the pivot index
         quickSort(arr, low, pivotIndex - 1, countCmp);            //Partition the Array on the left of the Pivot
@@ -226,7 +226,7 @@ void quickSort(int arr[], int low, int high,int& countCmp) {
     return;
 }
 
-void countingSort(int arr[], int n, int& countCmp) {
+void countingSort(int arr[], int n, long long& countCmp) {
     int Max = arr[maxArray(arr, n, countCmp)] + 1;
     int* countArray = new int[Max]();           //Create new array to count how many time does a element appear
     for (int i = 0; countCmp++, i < n; i++) {
@@ -250,7 +250,7 @@ void countingSort(int arr[], int n, int& countCmp) {
     delete[]outputArray;
 }
 
-void flashSort(int arr[], int n,int& countCmp) {
+void flashSort(int arr[], int n,long long& countCmp) {
     int max = maxArray(arr, n, countCmp);
     int minVal = minArray(arr, n, countCmp);
     int groupindex = int(n * 0.45);              //Calculating the number of groups to divide the array
@@ -291,7 +291,7 @@ void flashSort(int arr[], int n,int& countCmp) {
     }
 }
 
-void shellSort(int a[], int n, int& countCmp) {
+void shellSort(int a[], int n, long long& countCmp) {
     countCmp = 0;
     for (int gap = n / 2; countCmp++, gap > 0; gap /= 2) {
         for (int i = gap; countCmp++, i < n; i++) {
@@ -305,7 +305,7 @@ void shellSort(int a[], int n, int& countCmp) {
     }
 }
 
-void shakerSort(int a[], int n, int& countCmp) {
+void shakerSort(int a[], int n, long long& countCmp) {
     countCmp = 0;
     bool swapped = true;
     int start = 0;
@@ -333,7 +333,7 @@ void shakerSort(int a[], int n, int& countCmp) {
     }
 }
 
-void heapRebuild(int i, int a[], int n, int& countCmp) {
+void heapRebuild(int i, int a[], int n, long long& countCmp) {
     int largest = i;
     int left = 2 * i + 1;
     int right = 2 * i + 2;
@@ -352,13 +352,13 @@ void heapRebuild(int i, int a[], int n, int& countCmp) {
     }
 }
 
-void heapConstruct(int a[], int n, int& countCmp) {
+void heapConstruct(int a[], int n, long long& countCmp) {
     for (int i = n / 2 - 1; countCmp++, i >= 0; i--) {
         heapRebuild(i, a, n, countCmp);
     }
 }
 
-void heapSort(int a[], int n, int& countCmp) {
+void heapSort(int a[], int n, long long& countCmp) {
     countCmp = 0;
     heapConstruct(a, n, countCmp);
     int r = n - 1;
@@ -369,7 +369,7 @@ void heapSort(int a[], int n, int& countCmp) {
     }
 }
 
-void radixSort(int a[], int n, int& countCmp) {
+void radixSort(int a[], int n, long long& countCmp) {
     countCmp = 0;
     int minn = minArray(a, n, countCmp);
 
