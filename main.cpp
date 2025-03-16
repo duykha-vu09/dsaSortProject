@@ -349,4 +349,8 @@ int main(int argc, char* argv[])
 
         }
     }
+    if (mode == "-e")
+    {
+        runExperiment();
+    }
 }
