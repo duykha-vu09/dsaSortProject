@@ -299,7 +299,7 @@ void shellSort(int a[], int n, long long& countCmp) {
         for (int i = gap; countCmp++, i < n; i++) {
             int temp = a[i];
             int j;
-            for (j = i; countCmp++, j >= gap && countCmp++, a[j - gap] > temp; j -= gap) {
+            for (j = i; countCmp++, j >= gap && countCmp++,(j - gap) >= 0 && a[j - gap] > temp; j -= gap) {
                 a[j] = a[j - gap];
             }
             a[j] = temp;
