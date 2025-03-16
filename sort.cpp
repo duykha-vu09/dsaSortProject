@@ -252,6 +252,18 @@ void countingSort(int arr[], int n, long long& countCmp) {
     delete[]outputArray;
 }
 
+void insertionSortforFlashSort(int arr[], int start, int end, long long& countCmp) {
+    for (int i = start + 1; countCmp++, i < end; i++) {
+        int key = arr[i];
+        int j = i - 1;
+        while (countCmp++, j >= start && countCmp++, arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+
 void flashSort(int arr[], int n,long long& countCmp) {
     int max = maxArray(arr, n, countCmp);
     int minVal = minArray(arr, n, countCmp);
@@ -282,15 +294,14 @@ void flashSort(int arr[], int n,long long& countCmp) {
         }
     }
     //Insertion Sort again
-    for (int i = 1; countCmp++, i < n; i++) {
-        int j = 0;
-        while (countCmp++,j < i) {
-            if (countCmp++,arr[j] > arr[i]) {
-                swap(arr[j], arr[i]);
-            }
-            j++;
-        }
+    int start = 0;
+    for (int g = 0; g < groupIndex; g++) {
+        int end = group[g];
+        insertionSortforFlashSort(arr, start, end, countCmp);
+        start = end;
     }
+
+    delete[] group;
 }
 
 void shellSort(int a[], int n, long long& countCmp) {
