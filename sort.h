@@ -25,6 +25,7 @@ void quickSort(int arr[], int low, int high,long long& countCmp);
 
 void countingSort(int arr[], int n, long long& countCmp);
 
+void insertionSortforFlashSort(int arr[], int start, int end, long long& countCmp);
 void flashSort(int arr[], int n,long long& countCmp);
 
 void shellSort(int a[], int n, long long& countCmp);
