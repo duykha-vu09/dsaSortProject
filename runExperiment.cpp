@@ -106,58 +106,9 @@ void runExperiments() {
                 A2 = A1;
                 long long countCmp = 0;
                 double time = 0.0;
-
-                if (algo == "selection-sort")
-                {
-                    time = measureSortingTime(algo, A2, size, countCmp);
-                }
-                else if (algo == "insertion-sort")
-                {
-                    time = measureSortingTime(algo, A2, size, countCmp);
-                }
-                else if (algo == "shell-sort")
-                {
-                    time = measureSortingTime(algo, A2, size, countCmp);
-                }
-                else if (algo == "bubble-sort")
-                {
-                    time = measureSortingTime(algo, A2, size, countCmp);
-                }
-                else if (algo == "heap-sort")
-                {
-                    time = measureSortingTime(algo, A2, size, countCmp);
-                }
-                else if (algo == "merge-sort")
-                {
-                    time = measureSortingTime(algo, A2, size, countCmp);
-                }
-                else if (algo == "quick-sort")
-                {
-                    time = measureSortingTime(algo, A2, size, countCmp);
-                }
-                else if (algo == "radix-sort")
-                {
-                    time = measureSortingTime(algo, A2, size, countCmp);
-                }
-                else if (algo == "counting-sort")
-                {
-                    time = measureSortingTime(algo, A2, size, countCmp);
-                }
-                else if (algo == "binary-insertion-sort")
-                {
-                    time = measureSortingTime(algo, A2, size, countCmp);
-                }
-                else if (algo == "shaker-sort")
-                {
-                    time = measureSortingTime(algo, A2, size, countCmp);
-                }
-                else if (algo == "flash-sort")
-                {
-                    time = measureSortingTime(algo, A2, size, countCmp);
-                }
-
-
-
+                
+                time = measureSortingTime(algo, A2, size, countCmp);
+                
                 cout << algo << " " << dataOrders[i] << " " << size << " Time: " << time << " ms Comparisons: " << countCmp << endl;
                 writeResults(algo, dataOrders[i], size, time, countCmp);
                 delete[] A2;
