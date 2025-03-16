@@ -103,7 +103,7 @@ void runExperiments() {
 
             for (const string& algo : algorithms) {
                 int* A2 = new int[size];
-                A2 = A1;
+                copyArray(A1,A2,size);
                 long long countCmp = 0;
                 double time = 0.0;
                 
