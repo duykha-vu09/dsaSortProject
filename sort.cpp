@@ -340,11 +340,11 @@ void heapRebuild(int i, int a[], int n, long long& countCmp) {
     int left = 2 * i + 1;
     int right = 2 * i + 2;
 
-    if (countCmp++, left < n && countCmp++, a[left] > a[largest]) {
+    if (left < n && (countCmp++, a[left] > a[largest])) {
         largest = left;
     }
 
-    if (countCmp++, right < n && countCmp++, a[right] > a[largest]) {
+    if (right < n && (countCmp++, a[right] > a[largest])) {
         largest = right;
     }
 
