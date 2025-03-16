@@ -194,13 +194,13 @@ int minArray(int arr[], int n, long long& countCmp) {            //Find Min Elem
 
 void insertionSort(int arr[], int n, long long& countCmp) {
     for (int i = 1; countCmp++, i < n; i++) {
-        int j = 0;                          //Pick the second number
-        while (countCmp++,j < i) {
-            if (countCmp++,arr[j] > arr[i]) {          //Compare all numbers before the selected number, swap if the selected number is smaller
-                swap(arr[j], arr[i]);
-            }
-            j++;                            //Repeat until the array is sorted
+        int key = arr[i];
+        int j = i - 1;
+        while (countCmp++, j >= 0 && countCmp++, arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
         }
+        arr[j + 1] = key;
     }
 }
 
