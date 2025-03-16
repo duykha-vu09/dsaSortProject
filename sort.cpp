@@ -295,7 +295,7 @@ void flashSort(int arr[], int n,long long& countCmp) {
     }
     //Insertion Sort again
     int start = 0;
-    for (int g = 0; g < groupIndex; g++) {
+    for (int g = 0; g < groupindex; g++) {
         int end = group[g];
         insertionSortforFlashSort(arr, start, end, countCmp);
         start = end;
