@@ -281,7 +281,7 @@ void shellSort(int a[], int n, long long& countCmp) {
         for (int i = gap; countCmp++, i < n; i++) {
             int temp = a[i];
             int j;
-            for (j = i; countCmp++, j >= gap && countCmp++, (j - gap) >= 0 && a[j - gap] > temp; j -= gap) {
+            for (j = i; (countCmp++, j >= gap) && (countCmp++, a[j - gap] > temp); j -= gap) {
                 a[j] = a[j - gap];
             }
             a[j] = temp;
@@ -322,11 +322,11 @@ void heapRebuild(int i, int a[], int n, long long& countCmp) {
     int left = 2 * i + 1;
     int right = 2 * i + 2;
 
-    if (countCmp++, left < n && (countCmp++, a[left] > a[largest])) {
+    if ((countCmp++, left < n) && (countCmp++, a[left] > a[largest])) {
         largest = left;
     }
 
-    if (countCmp++, right < n && (countCmp++, a[right] > a[largest])) {
+    if ((countCmp++, right < n) && (countCmp++, a[right] > a[largest])) {
         largest = right;
     }
     if (countCmp++, largest != i) {
@@ -372,5 +372,3 @@ void radixSort(int a[], int n, long long& countCmp) {
 
     delete[] shiftedArr;
 }
-
-
