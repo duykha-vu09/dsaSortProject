@@ -69,9 +69,8 @@ void merge (int arr[], int left, int mid, int right, long long& countCmp)
 
     int* tmp = new int[n + m];
     //Compare sub_array 1 with sub_array 2 then put element that meet the conditioncondition into the temp array
-    while (first < left + n && second <= right)
+    while ((countCmp++, first < left + n) && (countCmp++, second <= right))
     {
-        countCmp += 2;
         if (arr[first] < arr[second])
         {
             tmp[idx++] = arr[first++];
@@ -82,7 +81,6 @@ void merge (int arr[], int left, int mid, int right, long long& countCmp)
         }
         countCmp++;
     }
-    countCmp++; //?????
 
     //Copy the remaining elements
     while (first < left + n) {
