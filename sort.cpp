@@ -12,50 +12,39 @@ void swap(int &a, int &b)
 
 void selectionSort(int arr[], int n, long long& countCmp)
 {
-    for (int i = 0; i < n; i++)
+    for (int i = 0; countCmp++, i < n; i++)
     {
-        countCmp++;
         int min = arr[i];
         int idx = i;
-        for (int j = i + 1; j < n; j++)
+        for (int j = i + 1; countCmp++, j < n; j++)
         {
-            countCmp++;
-            if (min > arr[j])
+            if (countCmp++, min > arr[j])
             {
                 min = arr[j];
                 idx = j;
             }
-            countCmp++;
         }
-        countCmp++;
         swap(arr[i], arr[idx]);
     }
-    countCmp++;
 }
 
 void bubbleSort(int arr[], int n, long long& countCmp)
 {
-    for (int i = 0; i < n - 1; i++)
+    for (int i = 0; countCmp++, i < n - 1; i++)
     {
-        countCmp++;
         bool swapped = false;
 
-        for (int j = 0; j < n - i - 1; j++)
+        for (int j = 0; countCmp++, j < n - i - 1; j++)
         {
-            countCmp++;
-            if (arr[j] > arr[j+1]) 
+            if (countCmp++, arr[j] > arr[j+1]) 
             {
                 swap(arr[j], arr[j+1]);
                 swapped = true; 
             }
-            countCmp++;
         }
-        countCmp++;
         //If not swap any element -> array is sorted -> skip the rest steps 
-        if (!swapped) break;
-        countCmp++;
+        if (countCmp++, !swapped) break;
     }
-    countCmp++;
 }
 
 void merge (int arr[], int left, int mid, int right, long long& countCmp)
@@ -71,7 +60,7 @@ void merge (int arr[], int left, int mid, int right, long long& countCmp)
     //Compare sub_array 1 with sub_array 2 then put element that meet the conditioncondition into the temp array
     while ((countCmp++, first < left + n) && (countCmp++, second <= right))
     {
-        if (arr[first] < arr[second])
+        if (countCmp++, arr[first] < arr[second])
         {
             tmp[idx++] = arr[first++];
         }
@@ -79,37 +68,29 @@ void merge (int arr[], int left, int mid, int right, long long& countCmp)
         {
             tmp[idx++] = arr[second++];
         }
-        countCmp++;
     }
 
     //Copy the remaining elements
-    while (first < left + n) {
-        countCmp++;
+    while (countCmp++, first < left + n) {
         tmp[idx++] = arr[first++];
     }
-    countCmp++;
 
     while (second <= right) {
-        countCmp++;
         tmp[idx++] = arr[second++];
     }
-    countCmp++;
     
     //Copy elements from temp array to the original array
-    for (int i = 0; i < m + n; i++)
+    for (int i = 0; countCmp++, i < m + n; i++)
     {
-        countCmp++;
         arr[left+i] = tmp[i];
     }
-    countCmp++;
     
     delete[] tmp;
 }
 
 void mergeSort (int arr[], int left, int right, long long& countCmp)
 {
-    if (left >= right) return;
-    countCmp++;
+    if (countCmp++, left >= right) return;
 
     int mid = left + (right - left) / 2;
     mergeSort(arr, left, mid, countCmp);
@@ -119,26 +100,22 @@ void mergeSort (int arr[], int left, int right, long long& countCmp)
 
 int binarySearch(int a[], int item, int left, int right, long long& countCmp)
 {
-    if (right <= left) 
+    if (countCmp++, right <= left) 
     {
-        countCmp++;
-        if (item > a[left])
+        if (countCmp++, item > a[left])
             return left + 1;
         else
             return left;
     }
-    countCmp++;
 
     int mid = (left + right) / 2;
 
-    if (item == a[mid]) return mid + 1;
-    countCmp++;
+    if (countCmp++, item == a[mid]) return mid + 1;
 
-    if (item > a[mid])
+    if (countCmp++, item > a[mid])
     {
         return binarySearch(a, item, mid + 1, right, countCmp);
     }
-    countCmp++;
 
     return binarySearch(a, item, left, mid - 1, countCmp);
 }
@@ -147,9 +124,8 @@ void binaryInsertionSort(int a[], int n, long long& countCmp)
 {
     int i, pos, j, key;
 
-    for (i = 1; i < n; ++i)
+    for (i = 1; countCmp++, i < n; ++i)
     {
-        countCmp++;
         j = i - 1;
         key = a[i];
 
@@ -157,16 +133,13 @@ void binaryInsertionSort(int a[], int n, long long& countCmp)
         pos = binarySearch(a, key, 0, j, countCmp);
 
         // Move all elements after key's position to create space to put key 
-        while (j >= pos)
+        while (countCmp++, j >= pos)
         {
-            countCmp++;
             a[j + 1] = a[j];
             j--;
         }
-        countCmp++;
         a[j + 1] = key;
     }
-    countCmp++;
 }
 
 int maxArray(int arr[], int n, long long& countCmp) {            //Find Max Element in Array
