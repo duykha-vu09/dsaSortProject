@@ -371,7 +371,7 @@ void radixSort(int a[], int n, long long& countCmp) {
         shiftedArr[i] = a[i] - minn;
     }
 
-    int maxx = a[maxArray(shiftedArr, n, countCmp)];    // Find the maximum value in the shifted array
+    int maxx = shiftedArr[maxArray(shiftedArr, n, countCmp)];    // Find the maximum value in the shifted array
     // Perform counting sort for each digit(from least significant to most significant)
     for (int exp = 1; countCmp++, maxx / exp > 0; exp *= 10) {
         countingSort(shiftedArr, n, countCmp);
