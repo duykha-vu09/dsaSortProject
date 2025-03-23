@@ -276,13 +276,18 @@ void flashSort(int arr[], int n,long long& countCmp) {
 
 void shellSort(int a[], int n, long long& countCmp) {
     countCmp = 0;
+     // Start with a big gap, then reduce the gap
     for (int gap = n / 2; countCmp++, gap > 0; gap /= 2) {
+        // Perform a gapped insertion sort
         for (int i = gap; countCmp++, i < n; i++) {
             int temp = a[i];
             int j;
+            // Shift elements that are greater than temp to the right
             for (j = i; (countCmp++, j >= gap) && (countCmp++, a[j - gap] > temp); j -= gap) {
+                 // Shift the element at j - gap to position j
                 a[j] = a[j - gap];
             }
+            //Place temp in correct positionposition
             a[j] = temp;
         }
     }
@@ -295,17 +300,20 @@ void shakerSort(int a[], int n, long long& countCmp) {
     int end = n - 1;
     while (swapped) {
         swapped = false;
+        // Perform a bubble sort from left to right
         for (int i = start; countCmp++, i < end; i++) {
             if (countCmp++, a[i] > a[i + 1]) {
                 swap(a[i], a[i + 1]);
                 swapped = true;
             }
         }
+        // If nothing moved, then array is sorted
         if (countCmp++, !swapped) {
             break;
         }
         swapped = false;
         end--;
+        // Perform a bubble sort from right to left
         for (int i = end - 1; countCmp++, i >= start; i--) {
             if (countCmp++, a[i] > a[i + 1]) {
                 swap(a[i], a[i + 1]);
@@ -317,54 +325,58 @@ void shakerSort(int a[], int n, long long& countCmp) {
 }
 
 void heapRebuild(int i, int a[], int n, long long& countCmp) {
-    int largest = i;
+    int largest = i;    // Assume the root is the largest
     int left = 2 * i + 1;
     int right = 2 * i + 2;
 
-    if ((countCmp++, left < n) && (countCmp++, a[left] > a[largest])) {
+    if ((countCmp++, left < n) && (countCmp++, a[left] > a[largest])) {    // If left child is larger than root
         largest = left;
     }
 
-    if ((countCmp++, right < n) && (countCmp++, a[right] > a[largest])) {
+    if ((countCmp++, right < n) && (countCmp++, a[right] > a[largest])) {    // If right child is larger than root
         largest = right;
     }
     if (countCmp++, largest != i) {
-        swap(a[i], a[largest]);
+        swap(a[i], a[largest]);    // Swap root with the largest child
         heapRebuild(largest, a, n, countCmp);
     }
 }
 
+// Construct a max-heap
 void heapConstruct(int a[], int n, long long& countCmp) {
     for (int i = n / 2 - 1; countCmp++, i >= 0; i--) {
         heapRebuild(i, a, n, countCmp);
     }
 }
 
+// Heapify
 void heapSort(int a[], int n, long long& countCmp) {
     countCmp = 0;
+    //Build the max-heap
     heapConstruct(a, n, countCmp);
     int r = n - 1;
     while (countCmp++, r > 0) {
-        swap(a[0], a[r]);
-        heapRebuild(0, a, r, countCmp);
+        swap(a[0], a[r]);		// Swap the root with the last element
+        heapRebuild(0, a, r, countCmp);		//Rebuild the heap
         r--;
     }
 }
 
 void radixSort(int a[], int n, long long& countCmp) {
     countCmp = 0;
-    int minn = minArray(a, n, countCmp);
-
+    int minn = minArray(a, n, countCmp);    // Find the minimum value in the array
+    // Create a shifted array
     int* shiftedArr = new int[n];
     for (int i = 0; countCmp++, i < n; i++) {
         shiftedArr[i] = a[i] - minn;
     }
 
-    int maxx = a[maxArray(shiftedArr, n, countCmp)];
+    int maxx = a[maxArray(shiftedArr, n, countCmp)];    // Find the maximum value in the shifted array
+    // Perform counting sort for each digit(from least significant to most significant)
     for (int exp = 1; countCmp++, maxx / exp > 0; exp *= 10) {
         countingSort(shiftedArr, n, countCmp);
     }
-
+    // Shift the sorted array back to its original range
     for (int i = 0; countCmp++, i < n; i++) {
         a[i] = shiftedArr[i] + minn;
     }
